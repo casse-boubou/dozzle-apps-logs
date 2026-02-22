@@ -9,7 +9,7 @@ if [ -z "$SERVER_PID" ]; then
 fi
 
 # Check if .sock is listening
-SERVER_LISTER=$(netstat -lxp | grep $SERVER_PID/node)
+SERVER_LISTER=$(netstat -lxp | grep "$SERVER_PID"/node)
 if [ -z "$SERVER_LISTER" ]; then
     exit 1
 fi

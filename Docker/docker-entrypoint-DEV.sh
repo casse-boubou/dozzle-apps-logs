@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## In docker-compose service set
 #   stop_signal: SIGTERM
