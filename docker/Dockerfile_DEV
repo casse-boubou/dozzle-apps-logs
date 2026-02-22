@@ -4,10 +4,10 @@ USER root
 # Update index, install app, and clean up cache
 RUN echo "Installing base packages" \
     && apk --update --no-cache add \
-    tzdata \
-    haproxy \
-    nodejs \
-    npm
+    tzdata=2025b-r0 \
+    haproxy=2.8.16-r0 \
+    nodejs=20.15.1-r0 \
+    npm=10.2.5-r0
 
 # For HAPROXY and NODE
 ENV SOCKET_PATH=/var/run/fakeDocker.sock

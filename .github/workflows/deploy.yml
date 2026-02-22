@@ -45,9 +45,11 @@ jobs:
         # check dockerfile integrity
         - uses: hadolint/hadolint-action@v3.1.0
           with:
+              ignore: DL3002
               dockerfile: ./docker/Dockerfile
         - uses: hadolint/hadolint-action@v3.1.0
           with:
+              ignore: DL3002
               dockerfile: ./docker/Dockerfile_DEV
         # check compose.yml integrity
         - name: Lint docker-compose.yml

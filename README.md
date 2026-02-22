@@ -62,6 +62,9 @@ In your Dozzle service configuration, add the environment variable:
 ```yaml
 services:
   dozzle:
+    depends_on:
+      dozzle_apps_logs:
+        condition: service_healthy
     image: amir20/dozzle:latest
     ....
     environment:

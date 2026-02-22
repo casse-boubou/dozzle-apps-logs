@@ -4,10 +4,10 @@ USER root
 # Update index, install app, and clean up cache
 RUN echo "Installing base packages" \
     && apk --update --no-cache add \
-    tzdata \
-    haproxy \
-    nodejs \
-    npm
+    tzdata=2025b-r0 \
+    haproxy=2.8.16-r0 \
+    nodejs=20.15.1-r0 \
+    npm=10.2.5-r0
 
 # For HAPROXY and NODE
 ENV SOCKET_PATH=/var/run/fakeDocker.sock
@@ -37,7 +37,7 @@ ENV PROXY_PORT=":2376" \
 # NODE.JS
 ####################
 WORKDIR /app
-COPY ./nodejs/package.json ./nodejs/server.js .
+COPY ./nodejs/package.json ./nodejs/server.js /app/
 RUN npm install
 
 
@@ -45,7 +45,7 @@ RUN npm install
 # DOZZLE-APPS-LOGS
 ####################
 WORKDIR /dozzle_apps_logs
-COPY docker-entrypoint.sh healthcheck .
+COPY docker-entrypoint.sh healthcheck /dozzle_apps_logs/
 
 
 
@@ -53,5 +53,6 @@ COPY docker-entrypoint.sh healthcheck .
 ##################################
 ## PRODUCTION MODE
 ##################################
+
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD sh healthcheck
 ENTRYPOINT ["sh","docker-entrypoint.sh"]
