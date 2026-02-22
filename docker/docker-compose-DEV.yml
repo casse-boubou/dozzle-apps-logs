@@ -9,7 +9,7 @@ services:
     stop_grace_period: 30s
     stop_signal: SIGTERM
     environment:
-      - TZ=${TZ}
+      - TZ=Etc/UTC
     volumes:
       - /path/to/fluent.conf:/fluentd/etc/fluent.conf:ro
       # - /path/to/firstfile.log:/logs/firstfile.log:ro 

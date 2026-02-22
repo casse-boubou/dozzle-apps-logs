@@ -44,9 +44,9 @@ services:
       - dozzle
   dozzle_apps_logs:
     container_name: dozzle_apps_logs
-    # image: dozzle_apps_logs:0.0.1
+    image: ghcr.io/casse-boubou/dozzle-apps-logs:latest
     environment:
-      - TZ=${TZ}
+      - TZ=Etc/UTC
     volumes:
       - /path/to/fluent.conf:/fluentd/etc/fluent.conf:ro
       # - /path/to/firstfile.log:/logs/firstfile.log:ro 
