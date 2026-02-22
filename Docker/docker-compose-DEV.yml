@@ -1,0 +1,24 @@
+services:
+  dozzle_apps_logs_DEV:
+    container_name: dozzle_apps_logs_DEV
+    build:
+      context: .
+      dockerfile: Dockerfile_DEV
+    image: dozzle_apps_logs:0.0.1
+    pull_policy: build
+    stop_grace_period: 30s
+    stop_signal: SIGTERM
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - /path/to/fluent.conf:/fluentd/etc/fluent.conf:ro
+      # - /path/to/firstfile.log:/logs/firstfile.log:ro 
+      # - /path/to/secondfile.log:/logs/secondfile.log:ro
+      # - ....
+      # - /var/run/docker.sock:/var/run/docker.sock (optional)
+      - /path/to/Docker/nodejs/server.js:/DEV/server.js
+      - /path/to/Docker/nodejs/package.json:/DEV/package.json
+      - /path/to/Docker/healthcheck:/DEV/healthcheck
+      - /path/to/Docker/docker-entrypoint.sh:/DEV/doc.sh
+      - /path/to/Docker/haproxy/haproxy.cfg:/DEV/haproxy.cfg
+      - /path/to/fluent.conf:/DEV/fluent.conf

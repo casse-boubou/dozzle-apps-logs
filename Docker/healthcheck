@@ -1,0 +1,20 @@
+#!/bin/bash
+# healthcheck
+
+
+# Check server.js is running
+SERVER_PID=$(pgrep -f "node /app/server.js")
+if [ -z "$SERVER_PID" ]; then
+    exit 1
+fi
+
+# Check if .sock is listening
+SERVER_LISTER=$(netstat -lxp | grep $SERVER_PID/node)
+if [ -z "$SERVER_LISTER" ]; then
+    exit 1
+fi
+
+
+
+
+exit 0

@@ -1,0 +1,12 @@
+services:
+  dozzle_apps_logs:
+    container_name: dozzle_apps_logs
+    # image: dozzle_apps_logs:0.0.1
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - /path/to/fluent.conf:/fluentd/etc/fluent.conf:ro
+      # - /path/to/firstfile.log:/logs/firstfile.log:ro 
+      # - /path/to/secondfile.log:/logs/secondfile.log:ro
+      # - ....
+      # - /var/run/docker.sock:/var/run/docker.sock (optional)
