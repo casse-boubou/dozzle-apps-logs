@@ -36,13 +36,6 @@ Aggregating hybrid environments (real containers + external logs)
 ```yaml
 services:
   dozzle_apps_logs:
-    image: your-image-name
-    container_name: dozzle_apps_logs
-    volumes:
-      - ./logs:/logs
-    networks:
-      - dozzle
-  dozzle_apps_logs:
     container_name: dozzle_apps_logs
     image: ghcr.io/casse-boubou/dozzle-apps-logs:latest
     environment:
