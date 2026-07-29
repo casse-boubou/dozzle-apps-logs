@@ -33,15 +33,9 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["github-releases"],
-      "matchDepNames": ["timvisee/lazymc"],
-      "commitMessagePrefix": "✨",
-      "commitMessageTopic": "LazyMC"
-    },
-    {
       "matchDatasources": ["docker"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "docker {{package}} image"
+      "commitMessageTopic": "docker {{packageName}} image"
     },
     {
       "matchDatasources": ["repology"],
