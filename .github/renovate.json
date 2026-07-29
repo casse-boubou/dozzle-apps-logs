@@ -41,7 +41,7 @@
     {
       "matchDatasources": ["docker"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "docker {{packageName}} image"
+      "commitMessageTopic": "docker {{package}} image"
     },
     {
       "matchDatasources": ["repology"],
