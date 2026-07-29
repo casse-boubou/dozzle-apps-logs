@@ -11,7 +11,10 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["//Dockerfile$/"],
+      "managerFilePatterns": [
+        "//Dockerfile$/",
+        "//Dockerfile_DEV$/"
+      ],
       "datasourceTemplate": "docker",
       "depNameTemplate": "fluent",
       "matchStringsStrategy": "any",
@@ -21,7 +24,10 @@
     },
     {
       "customType": "regex",
-      "managerFilePatterns": ["//Dockerfile$/"],
+      "managerFilePatterns": [
+        "//Dockerfile$/",
+        "//Dockerfile_DEV$/"
+      ],
       "datasourceTemplate": "repology",
       "depNameTemplate": "alpine_3_19/{{package}}",
       "matchStringsStrategy": "any",
