@@ -1,5 +1,5 @@
-
-FROM fluent/fluentd:v1.16.11-1.0
+ARG FLUENTD_BASE_IMAGE_VERSION="v1.16.11-1.0"
+FROM fluent/fluentd:${FLUENTD_BASE_IMAGE_VERSION} AS runner
 USER root
 # Update index, install app, and clean up cache
 RUN echo "Installing base packages" \
@@ -38,7 +38,7 @@ ENV PROXY_PORT=":2376" \
 ####################
 WORKDIR /app
 COPY ./nodejs/package.json ./nodejs/server.js /app/
-RUN npm install
+RUN npm ci
 
 
 ####################
