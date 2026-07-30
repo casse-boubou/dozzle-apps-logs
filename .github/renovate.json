@@ -7,24 +7,11 @@
         "//Dockerfile$/",
         "//Dockerfile_DEV$/"
       ],
-      "datasourceTemplate": "docker",
-      "depNameTemplate": "fluent",
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "ARG FLUENTD_BASE_IMAGE_VERSION=(?<currentValue>v[0-9]+\\.[0-9]+\\.[0-9]+-[0-9]+\\.[0-9]+)"
-      ]
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "//Dockerfile$/",
-        "//Dockerfile_DEV$/"
-      ],
       "datasourceTemplate": "repology",
-      "depNameTemplate": "alpine_3_19/{{package}}",
-      "matchStringsStrategy": "any",
+      "packageNameTemplate": "alpine_3_19/{{package}}",
+      "depNameTemplate": "{{package}}",
       "matchStrings": [
-        "\\s\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s+"
+        "\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s{0,1}"
       ],
       "versioningTemplate": "loose"
     }
