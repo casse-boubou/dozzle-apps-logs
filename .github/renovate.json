@@ -1,17 +1,18 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>casse-boubou/.github//.github/renovate.json"],
   "customManagers": [
     {
       "customType": "regex",
       "managerFilePatterns": [
-        "//Dockerfile$/",
-        "//Dockerfile_DEV$/"
+        "/(^|/)Dockerfile$/",
+        "/(^|/)Dockerfile_DEV$/"
       ],
       "datasourceTemplate": "repology",
       "packageNameTemplate": "alpine_3_19/{{package}}",
       "depNameTemplate": "{{package}}",
       "matchStrings": [
-        "\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s{0,1}"
+        "\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s"
       ],
       "versioningTemplate": "loose"
     }
