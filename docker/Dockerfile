@@ -37,7 +37,7 @@ ENV PROXY_PORT=":2376" \
 # NODE.JS
 ####################
 WORKDIR /app
-COPY ./nodejs/package.json ./nodejs/server.js /app/
+COPY ./nodejs/package.json ./nodejs/package-lock.json ./nodejs/server.js /app/
 RUN npm ci
 
 
