@@ -1,4 +1,4 @@
-ARG FLUENTD_BASE_IMAGE_VERSION="v1.16.11-1.0"
+ARG FLUENTD_BASE_IMAGE_VERSION="v1.16.11-1.0@sha256:4b28d3e1b86ada26de62b832a3d25471d569c2fc9f79380acc0a621b1f0a018b"
 FROM fluent/fluentd:${FLUENTD_BASE_IMAGE_VERSION} AS runner
 USER root
 # Update index, install app, and clean up cache
