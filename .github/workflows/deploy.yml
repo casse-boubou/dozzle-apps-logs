@@ -33,14 +33,31 @@ permissions:
 
 
 jobs:
-  test_files:
-    name: Test files
+  lint_zizmor:
+    name: zizmor
     runs-on: ubuntu-latest
-
+    permissions:
+      security-events: write # Required for upload-sarif (used by zizmor-action) to upload SARIF files.
+      # contents: read         # Only needed for private repos. Needed to clone the repo.
+      # actions: read          # Only needed for private repos. Needed for upload-sarif to read workflow run info.
     steps:
+        # check out code from GitHub
         - name: Checkout repository
           uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+          with:
+            persist-credentials: false
+        - name: Run zizmor 🌈
+          uses: zizmorcore/zizmor-action@6fc4b006235f201fdab3722e17240ab420d580e5 # v0.6.1
 
+  lint_shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+        # check out code from GitHub
+        - name: Checkout repository
+          uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+          with:
+            persist-credentials: false
         # check bash integrity
         - name: Run ShellCheck
           uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # 2.0.0
@@ -48,6 +65,18 @@ jobs:
             scandir: './docker'
             additional_files: 'healthcheck'
             severity: warning
+          env:
+            SHELLCHECK_OPTS: -s bash
+
+  lint_hadolint:
+    name: hadolint
+    runs-on: ubuntu-latest
+    steps:
+        # check out code from GitHub
+        - name: Checkout repository
+          uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+          with:
+            persist-credentials: false
         # check dockerfile integrity
         - name: Run hadolint
           uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
@@ -59,6 +88,16 @@ jobs:
           with:
               ignore: DL3002
               dockerfile: ./docker/Dockerfile_DEV
+
+  lint_dockercompose:
+    name: test docker-compose
+    runs-on: ubuntu-latest
+    steps:
+        # check out code from GitHub
+        - name: Checkout repository
+          uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+          with:
+            persist-credentials: false
         # check compose.yml integrity
         - name: Lint docker-compose.yml
           run: |
@@ -66,14 +105,23 @@ jobs:
             docker compose -f docker/docker-compose-DEV.yml config --quiet
 
 
+
+
   build:
-    needs: test_files
+    needs:
+      - lint_zizmor
+      - lint_shellcheck
+      - lint_hadolint
+      - lint_dockercompose
     name: Build docker image
     runs-on: ubuntu-latest
 
     steps:
+        # check out code from GitHub
         - name: Checkout repository
           uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+          with:
+            persist-credentials: false
 
         # Set up BuildKit Docker container builder to be able to build
         # multi-platform images and export cache
