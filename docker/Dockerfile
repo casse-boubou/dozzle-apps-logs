@@ -53,6 +53,8 @@ COPY docker-entrypoint.sh healthcheck /dozzle_apps_logs/
 ##################################
 ## PRODUCTION MODE
 ##################################
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+    CMD ["sh","healthcheck"]
 
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD sh healthcheck
 ENTRYPOINT ["sh","docker-entrypoint.sh"]
+
