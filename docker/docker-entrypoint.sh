@@ -20,6 +20,9 @@ term_handler() {
 trap term_handler TERM INT
 
 
+echo "Dozzle_App_Logs version: ${CONTAINER_BUILD_VERSION}"
+
+
 FLUENT_CONFIG_FILE=/fluentd/etc/fluent.conf
 # Check if fluent.conf is present
 if [[ ! -f "$FLUENT_CONFIG_FILE" ]]; then
