@@ -4,6 +4,8 @@
     "github>casse-boubou/.github//.github/renovate.json",
     "docker:pinDigests"
   ],
+  "internalChecksFilter": "none",
+  "internalChecksAsSuccess": true,
   "customManagers": [
     {
       "customType": "regex",
