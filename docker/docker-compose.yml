@@ -1,7 +1,7 @@
 services:
   dozzle_apps_logs:
     container_name: dozzle_apps_logs
-    image: ghcr.io/casse-boubou/dozzle-apps-logs:v0.0.1@sha256:ea9c251246b06a9b4455c412f28aa28b65be9d24bbb6092f0fb3e42e277295e4
+    image: ghcr.io/casse-boubou/dozzle-apps-logs:v1.0.0@sha256:8113d34cc1ba947477876e82f5201e81fa2cf0ae95ea8d331b1c005ad68819cd
     environment:
       - TZ=Etc/UTC
     volumes:
