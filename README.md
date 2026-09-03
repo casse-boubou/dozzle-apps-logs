@@ -110,8 +110,11 @@ By default, it is configured to be checked every 30 seconds.
 You can fully customize or override the healthcheck in your docker-compose.yml.
 
 ```yaml
+services:
+  vpn_watcher:
+    ....
     healthcheck:
-      test: ["CMD", "/dozzle", "healthcheck"]
+      test: ["CMD", "sh", "healthcheck"]
       interval: 10m
       timeout: 30s
       retries: 10

@@ -3,7 +3,7 @@ services:
     container_name: dozzle_apps_logs_DEV
     build:
       context: .
-      dockerfile: Dockerfile_DEV
+      dockerfile: Dockerfile.Dev
     image: dozzle_apps_logs:0.0.1
     pull_policy: build
     stop_grace_period: 30s
