@@ -23,12 +23,18 @@ trap term_handler TERM INT
 echo "Dozzle_App_Logs version: ${CONTAINER_BUILD_VERSION}"
 
 
+echo "Initialization.."
+
+
+
 FLUENT_CONFIG_FILE=/fluentd/etc/fluent.conf
 # Check if fluent.conf is present
 if [[ ! -f "$FLUENT_CONFIG_FILE" ]]; then
     echo "fluent.conf does not exist."
     echo "Please provide this file via a mounted volume like:"
     echo "-v /path/to/fluent.conf:/fluentd/etc/fluent.conf:ro"
+    echo "Shutting down.."
+    sleep 5
     exit 1
 fi
 
@@ -36,6 +42,7 @@ fi
 ##################################
 ## PRODUCTION MODE
 ##################################
+echo "Initialization complete"
 # Execute Fluentd
 # Créer les répertoires nécessaires
 mkdir -p /logs /logs-parsed /var/log/fluentd
