@@ -8,7 +8,7 @@ RUN echo "Installing base packages" \
     && apk --update --no-cache add \
     tzdata=2025b-r0 \
     haproxy=2.8.16-r0 \
-    nodejs=20.15.1-r0 \
+    nodejs=24.18.1-r0 \
     npm=10.2.5-r0
 
 # For HAPROXY and NODE
