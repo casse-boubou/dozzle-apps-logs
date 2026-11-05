@@ -21,5 +21,13 @@
       ],
       "versioningTemplate": "apk"
     }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["docker-compose"],
+      "matchDatasources": ["docker"],
+      "matchFileNames": ["docker/docker-compose.yml"],
+      "automerge": true
+    }
   ]
 }
